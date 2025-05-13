@@ -1,40 +1,69 @@
-
-import { useState } from 'react';
-import styles from '../styles/Find.module.css';
+import { useState } from "react";
+import styles from "../styles/Find.module.css";
 
 interface SearchResult {
   title: string;
   artist: string;
 }
 
-export default function Find() {
-  const [searchQuery, setSearchQuery] = useState('');
+export default function Search() {
+  const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
 
-  // Simulated search results - replace with actual API call
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
+  const handleSearchByName = () => {
     const mockResults = [
-      { title: 'Bohemian Rhapsody', artist: 'Queen' },
-      { title: 'Yesterday', artist: 'The Beatles' },
-      { title: 'Hotel California', artist: 'Eagles' },
-    ].filter(item => 
-      item.title.toLowerCase().includes(query.toLowerCase()) ||
-      item.artist.toLowerCase().includes(query.toLowerCase())
+      { title: "Bohemian Rhapsody", artist: "Queen" },
+      { title: "Imagine", artist: "John Lennon" },
+      { title: "Hotel California", artist: "Eagles" },
+    ];
+    setResults(
+      mockResults.filter((item) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()),
+      ),
     );
-    setResults(mockResults);
+  };
+
+  const handleSearchByLocation = () => {
+    const mockResults = [
+      { title: "Music Concert", artist: "Local Band" },
+      { title: "Art Exhibition", artist: "Gallery" },
+      { title: "Food Festival", artist: "City Center" },
+    ];
+    setResults(
+      mockResults.filter((item) =>
+        item.artist.toLowerCase().includes(searchQuery.toLowerCase()),
+      ),
+    );
   };
 
   return (
     <div className={styles.container}>
-      <input
-        type="text"
-        className={styles.searchBar}
-        placeholder="Search for songs..."
-        value={searchQuery}
-        onChange={(e) => handleSearch(e.target.value)}
-      />
-      
+      <div className={styles.searchWrapper}>
+        <input
+          type="text"
+          className={styles.searchBar}
+          placeholder="Enter search query..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <i
+          className="bi bi-geo-alt locationIcon"
+          style={{ fontSize: "24px", marginRight: "0.5rem" }}
+        ></i>
+      </div>
+
+      <div className={styles.buttonContainer}>
+        <button className={styles.actionButton} onClick={handleSearchByName}>
+          Find by Name
+        </button>
+        <button
+          className={styles.actionButton}
+          onClick={handleSearchByLocation}
+        >
+          Find by Location
+        </button>
+      </div>
+
       <div className={styles.results}>
         {results.map((result, index) => (
           <div key={index} className={styles.resultItem}>

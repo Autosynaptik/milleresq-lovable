@@ -7,11 +7,12 @@
 }
 
 .searchBar {
-  width: 90%;
+  width: 100%;
   padding: 1rem;
   font-size: 1.2rem;
   border: 2px solid #e2e2e2;
   border-radius: 8px;
+  margin-bottom: 2rem;
   transition: border-color 0.2s;
 }
 
@@ -68,23 +69,3 @@
 .actionButton:hover {
   background-color: #0051b3;
 }
-
-.buttonContainer {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem; /* Add space below buttons */
-}
-
-.searchWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.locationIcon {
-  cursor: pointer;
-}
-
-/* Include any other existing styles you have */

@@ -16,7 +16,7 @@ const Home: NextPage = () => {
 
         <div className={styles.choiceGrid}>
           <button className={styles.choiceButton} onClick={() => window.location.href = '/find'}>Find</button>
-          <button className={styles.choiceButton}>Search</button>
+          <button className={styles.choiceButton}  onClick={() => window.location.href = '/search'}>Search</button>
           <button className={styles.choiceButton}>Host</button>
         </div>
       </main>

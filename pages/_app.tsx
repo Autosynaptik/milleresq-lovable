@@ -1,8 +1,8 @@
-
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { SessionProvider } from 'next-auth/react'
-import Header from '../components/Header'
+import '../styles/globals.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'; // Import Bootstrap Icons CSS
+import type { AppProps } from 'next/app';
+import { SessionProvider } from 'next-auth/react';
+import Header from '../components/Header';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <Header />
       <Component {...pageProps} />
     </SessionProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
