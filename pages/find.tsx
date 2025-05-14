@@ -48,7 +48,24 @@ export default function Search() {
         />
         <i
           className="bi bi-geo-alt locationIcon"
-          style={{ fontSize: "24px", marginRight: "0.5rem" }}
+          style={{ fontSize: "24px", marginRight: "0.5rem", cursor: "pointer" }}
+          onClick={() => {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(
+                (position) => {
+                  const latitude = position.coords.latitude;
+                  const longitude = position.coords.longitude;
+                  setSearchQuery(`${latitude.toFixed(2)}, ${longitude.toFixed(2)}`);
+                },
+                (error) => {
+                  console.error("Error getting location:", error);
+                  alert("Unable to retrieve your location");
+                }
+              );
+            } else {
+              alert("Geolocation is not supported by your browser");
+            }
+          }}
         ></i>
       </div>
 
